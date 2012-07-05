@@ -19,7 +19,7 @@ public class GsonContext {
         return instance;
     }
 
-    private GsonContext() {
+    protected GsonContext() {
 
     }
 
