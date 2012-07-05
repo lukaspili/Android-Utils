@@ -10,7 +10,7 @@ import com.siu.android.andutils.ads.AdViewBasicListener;
  */
 public class AdsBannerSherlockActivity extends TrackedSherlockActivity {
 
-    private MobclixAdView adBannerView;
+    protected MobclixAdView adBannerView;
 
     @Override
     protected void onResume() {
@@ -39,7 +39,7 @@ public class AdsBannerSherlockActivity extends TrackedSherlockActivity {
         }
     }
 
-    protected void initParentActivity() {
+    protected void initAds() {
         adBannerView = (MobclixAdView) findViewById(R.id.ad_banner_view);
         adBannerView.addMobclixAdViewListener(new AdViewBasicListener());
     }
