@@ -17,6 +17,9 @@ build/
 
 # Intellij IDEA
 .idea/
+*.iml
+*.ipr
+*.iws
 out/
 
 # Mac OS
