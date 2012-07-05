@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import java.util.List;
+
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
@@ -13,8 +15,8 @@ public abstract class SimpleAdapter<T_Item, T_ViewHolder extends SimpleViewHolde
 
     protected int rowLayoutId;
 
-    public SimpleAdapter(Context context, int rowLayoutId) {
-        super(context, rowLayoutId);
+    public SimpleAdapter(Context context, int rowLayoutId, List<T_Item> items) {
+        super(context, rowLayoutId, items);
         this.rowLayoutId = rowLayoutId;
     }
 
