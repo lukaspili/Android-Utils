@@ -4,9 +4,11 @@ Android Utils
 Configuration
 --------------
 
-1. Add the Android-Utils project in libs/ as Library project
+* In the root of the main project : "git submodule add git@github.com:Siu-soon/Android-Utils.git libs/andutils"
 
-2. Add the following line in the project.property of the main project : "manifestmerger.enabled=true"
+* Import actionbarsherlock module in intellij
+
+* Import andutils module in intellij
 
 
 
