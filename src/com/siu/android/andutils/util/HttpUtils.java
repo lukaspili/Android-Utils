@@ -53,7 +53,7 @@ public class HttpUtils {
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = client.execute(new HttpPost(url));
         } catch (Exception e) {
-            Log.e(HttpUtils.class.getName(), "Error during downloading : " + e.getMessage());
+            Log.e(HttpUtils.class.getName(), "Error in POST", e);
             return false;
         } finally {
             Log.d(HttpUtils.class.getName(), "Finish in " + (System.currentTimeMillis() - time) + " ms");
@@ -82,7 +82,7 @@ public class HttpUtils {
                 in.close();
             }
         } catch (Exception e) {
-            Log.e(NetworkUtils.class.getName(), "Error during downloading : " + e.getMessage());
+            Log.e(HttpUtils.class.getName(), "Error in GET", e);
             return null;
         } finally {
             Log.d(NetworkUtils.class.getName(), "Finish in " + (System.currentTimeMillis() - time) + " ms");

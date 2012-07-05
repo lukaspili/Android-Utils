@@ -9,13 +9,9 @@ public abstract class SimpleViewHolder {
 
     protected View row;
 
-    public SimpleViewHolder() {
-        init();
-    }
-
     public void setRow(View row) {
         this.row = row;
     }
 
-    protected abstract void init();
+    public abstract void init();
 }

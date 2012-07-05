@@ -31,6 +31,8 @@ public abstract class SimpleAdapter<T_Item, T_ViewHolder extends SimpleViewHolde
         if (null == viewHolder) {
             viewHolder = createViewHolder();
             viewHolder.setRow(row);
+            viewHolder.init();
+
             row.setTag(viewHolder);
         }
 
