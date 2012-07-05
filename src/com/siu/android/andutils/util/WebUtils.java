@@ -1,6 +1,7 @@
 package com.siu.android.andutils.util;
 
 import android.util.Log;
+import android.webkit.WebView;
 
 import java.net.URLEncoder;
 
@@ -11,6 +12,8 @@ public class WebUtils {
 
     public static final String UTF8 = "utf-8";
     public static final String HTML = "text/html";
+
+    private static final String FAKE_URL = "fake://fuck/android";
 
     public static String encodeHtml(String content) {
         try {
@@ -25,5 +28,9 @@ public class WebUtils {
         return "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head><body>" +
                 content +
                 "</body></html>";
+    }
+
+    public static void loadToWeview(WebView webView, String content) {
+        webView.loadDataWithBaseURL(FAKE_URL, WebUtils.wrapWithHtml(content), WebUtils.HTML, WebUtils.UTF8, "");
     }
 }

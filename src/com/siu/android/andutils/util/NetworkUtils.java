@@ -30,38 +30,5 @@ public final class NetworkUtils {
         return true;
     }
 
-    public static String downloadData(String url) {
-        Log.d(NetworkUtils.class.getName(), "Connection opened to : " + url);
-        long time = System.currentTimeMillis();
 
-        HttpClient client = new DefaultHttpClient();
-
-        try {
-            HttpResponse response = client.execute(new HttpGet(url));
-            InputStream in = response.getEntity().getContent();
-
-            try {
-                return IOUtils.toString(in);
-            } finally {
-                in.close();
-            }
-        } catch (Exception e) {
-            Log.e(NetworkUtils.class.getName(), "Error during downloading : " + e.getMessage());
-            return null;
-        } finally {
-            Log.d(NetworkUtils.class.getName(), "Finish in " + (System.currentTimeMillis() - time) + " ms");
-        }
-    }
-
-    public static URL getUrl(String urlAsString) {
-        URL url;
-        try {
-            url = new URL(urlAsString);
-        } catch (MalformedURLException e) {
-            Log.w(NetworkUtils.class.getName(), "Invalid format for url : " + urlAsString, e);
-            return null;
-        }
-
-        return url;
-    }
 }
