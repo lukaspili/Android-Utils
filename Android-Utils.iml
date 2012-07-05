@@ -38,7 +38,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android 4.0.3 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="andutils-libs" level="project" />
     <orderEntry type="module" module-name="Actionbarsherlock 4.1" />
   </component>
 </module>
