@@ -1,8 +1,8 @@
 package com.siu.android.andutils.activity.tracker;
 
 import android.os.Bundle;
-import android.view.Window;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Window;
 import com.google.android.apps.analytics.easytracking.EasyTracker;
 
 /**
@@ -10,14 +10,19 @@ import com.google.android.apps.analytics.easytracking.EasyTracker;
  */
 public class TrackedSherlockFragmentActivity extends SherlockFragmentActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState, int layout) {
+        onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        setContentView(layout);
         setProgressBarIndeterminateVisibility(false);
 
         EasyTracker.getTracker().setContext(this);
+    }
+
+    @Override
+    protected final void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
