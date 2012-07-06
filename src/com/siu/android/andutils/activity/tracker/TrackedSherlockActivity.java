@@ -21,11 +21,6 @@ public class TrackedSherlockActivity extends SherlockActivity {
     }
 
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     protected void onStart() {
         super.onStart();
         EasyTracker.getTracker().trackActivityStart(this);
