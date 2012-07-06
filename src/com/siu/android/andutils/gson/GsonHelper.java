@@ -6,25 +6,11 @@ import com.google.gson.GsonBuilder;
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class GsonContext {
+public class GsonHelper {
 
-    private static GsonContext instance;
-    private Gson gson;
-
-    public static GsonContext getInstance() {
-        if (null == instance) {
-            instance = new GsonContext();
-        }
-
-        return instance;
-    }
-
-    protected GsonContext() {
-
-    }
+    private static Gson gson;
 
     protected void configure(GsonBuilder builder) {
-
     }
 
     public Gson getGson() {
@@ -33,6 +19,7 @@ public class GsonContext {
             configure(builder);
             gson = builder.create();
         }
+
         return gson;
     }
 }
