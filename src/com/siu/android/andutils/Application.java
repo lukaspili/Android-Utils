@@ -7,7 +7,7 @@ import android.content.Context;
  */
 public class Application extends android.app.Application {
 
-    private static Context context;
+    protected static Context context;
 
     public void onCreate() {
         super.onCreate();
