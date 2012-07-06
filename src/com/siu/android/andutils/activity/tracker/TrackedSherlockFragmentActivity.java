@@ -15,7 +15,7 @@ public class TrackedSherlockFragmentActivity extends SherlockFragmentActivity {
 
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(layout);
-        setProgressBarIndeterminateVisibility(false);
+        setSupportProgressBarIndeterminateVisibility(false);
 
         EasyTracker.getTracker().setContext(this);
     }
