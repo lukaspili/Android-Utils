@@ -11,7 +11,7 @@ import com.google.android.apps.analytics.easytracking.EasyTracker;
 public class TrackedSherlockActivity extends SherlockActivity {
 
     protected void onCreate(Bundle savedInstanceState, int layout) {
-        onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(layout);
