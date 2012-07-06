@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class GsonHelper {
+public class GsonOpenHelper {
 
     private static Gson gson;
 
