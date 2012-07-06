@@ -5,8 +5,7 @@ import ch.boye.httpclientandroidlib.HttpResponse;
 import ch.boye.httpclientandroidlib.NameValuePair;
 import ch.boye.httpclientandroidlib.client.HttpClient;
 import ch.boye.httpclientandroidlib.client.entity.UrlEncodedFormEntity;
-import ch.boye.httpclientandroidlib.client.methods.HttpGet;
-import ch.boye.httpclientandroidlib.client.methods.HttpPost;
+import ch.boye.httpclientandroidlib.client.methods.*;
 import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 import org.apache.commons.io.IOUtils;
@@ -16,50 +15,73 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
 public class HttpUtils {
 
-    public static boolean post(String url, String... params) {
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(params.length / 2);
-        for (int i = 0; i < params.length; i++) {
-            nameValuePairs.add(new BasicNameValuePair(params[i], params[i + 1]));
+    public static HttpResponse request(String url, HttpMethod method, String... params) {
+        List<NameValuePair> nameValuePairs = null;
+
+        if (params.length != 0) {
+            nameValuePairs = new ArrayList<NameValuePair>(params.length / 2);
+            for (int i = 0; i < params.length; i++) {
+                nameValuePairs.add(new BasicNameValuePair(params[i], params[i + 1]));
+            }
         }
-
-        return post(url, nameValuePairs);
-    }
-
-    public static boolean post(String url, Map<String, String> params) {
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(params.entrySet().size());
-        for (Map.Entry<String, String> e : params.entrySet()) {
-            nameValuePairs.add(new BasicNameValuePair(e.getKey(), e.getValue()));
-        }
-
-        return post(url, nameValuePairs);
-    }
-
-    public static boolean post(String url, List<NameValuePair> nameValuePairs) {
-        Log.d(HttpUtils.class.getName(), "Connection POST opened to : " + url);
-        long time = System.currentTimeMillis();
 
         HttpClient client = new DefaultHttpClient();
-        HttpPost post = new HttpPost(url);
-        HttpResponse response;
+
+        Log.d(HttpUtils.class.getName(), "Connection " + method + " opened to : " + url);
+        long time = System.currentTimeMillis();
 
         try {
-            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            response = client.execute(new HttpPost(url));
+            HttpRequestBase request;
+
+            switch (method) {
+                case GET:
+                    request = new HttpGet(url);
+                    break;
+
+                case POST:
+                    HttpPost post = new HttpPost(url);
+                    if (null != nameValuePairs) {
+                        post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    }
+                    request = post;
+                    break;
+
+                case PUT:
+                    HttpPut put = new HttpPut(url);
+                    if (null != nameValuePairs) {
+                        put.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    }
+                    request = put;
+                    break;
+
+                case DELETE:
+                    request = new HttpDelete(url);
+                    break;
+
+                default:
+                    return null;
+            }
+
+            return client.execute(request);
+
         } catch (Exception e) {
-            Log.e(HttpUtils.class.getName(), "Error in POST", e);
-            return false;
+            Log.e(HttpUtils.class.getName(), "Error in " + method, e);
+            return null;
         } finally {
             Log.d(HttpUtils.class.getName(), "Finish in " + (System.currentTimeMillis() - time) + " ms");
         }
+    }
 
-        if (response.getStatusLine().getStatusCode() == 200) {
+    public static boolean post(String url, String... params) {
+        HttpResponse response = request(url, HttpMethod.POST, params);
+
+        if (null != response && response.getStatusLine().getStatusCode() == 200) {
             return true;
         }
 
@@ -67,25 +89,28 @@ public class HttpUtils {
     }
 
     public static String get(String url) {
-        Log.d(NetworkUtils.class.getName(), "Connection GET opened to : " + url);
-        long time = System.currentTimeMillis();
+        HttpResponse response = request(url, HttpMethod.GET);
 
-        HttpClient client = new DefaultHttpClient();
+        if (null == response) {
+            return null;
+        }
+
+        return getResponseAsString(response);
+    }
+
+    public static String getResponseAsString(HttpResponse response) {
+        InputStream in = null;
 
         try {
-            HttpResponse response = client.execute(new HttpGet(url));
-            InputStream in = response.getEntity().getContent();
-
-            try {
-                return IOUtils.toString(in);
-            } finally {
-                in.close();
-            }
+            in = response.getEntity().getContent();
+            return IOUtils.toString(in);
         } catch (Exception e) {
-            Log.e(HttpUtils.class.getName(), "Error in GET", e);
+            Log.e(HttpUtils.class.getName(), "Error reading stream", e);
             return null;
         } finally {
-            Log.d(NetworkUtils.class.getName(), "Finish in " + (System.currentTimeMillis() - time) + " ms");
+            if (null != in) {
+                IOUtils.closeQuietly(in);
+            }
         }
     }
 
@@ -99,5 +124,9 @@ public class HttpUtils {
         }
 
         return url;
+    }
+
+    public static enum HttpMethod {
+        GET, POST, PUT, DELETE
     }
 }

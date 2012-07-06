@@ -8,7 +8,7 @@ import com.siu.android.andutils.ads.AdViewBasicListener;
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class AdsBannerSherlockActivity extends TrackedSherlockActivity {
+public class AdsSherlockActivity extends TrackedSherlockActivity {
 
     protected MobclixAdView adBannerView;
 
