@@ -26,7 +26,7 @@ public class HttpUtils {
 
         if (params.length != 0) {
             nameValuePairs = new ArrayList<NameValuePair>(params.length / 2);
-            for (int i = 0; i < params.length; i++) {
+            for (int i = 0; i < params.length; i = i + 2) {
                 nameValuePairs.add(new BasicNameValuePair(params[i], params[i + 1]));
             }
         }
@@ -88,6 +88,10 @@ public class HttpUtils {
         return false;
     }
 
+    public static String postGetAsString(String url, String... params) {
+        return getResponseAsString(request(url, HttpMethod.POST, params));
+    }
+
     public static String get(String url) {
         HttpResponse response = request(url, HttpMethod.GET);
 
@@ -99,6 +103,10 @@ public class HttpUtils {
     }
 
     public static String getResponseAsString(HttpResponse response) {
+        if (null == response) {
+            return null;
+        }
+
         InputStream in = null;
 
         try {
