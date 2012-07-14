@@ -78,7 +78,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/easyTracker.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/analytics_easytracker.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -105,7 +105,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/libGoogleAnalytics 1.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/analytics_google 1.4.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -123,7 +123,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/AirpushSDK.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/ads_airpush.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -132,7 +132,25 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/GoogleAdMobAdsSdk-6.0.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/ads_admob 6.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/ads_adfonic 2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/ads_mma_view 4.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
