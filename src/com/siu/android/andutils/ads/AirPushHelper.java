@@ -18,7 +18,7 @@ public class AirPushHelper {
     private static final String ICONS = "ads_airpush_icons";
 
     public static void init(Context context) {
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.ads_airpush_enabled), true)) {
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.preferences_ads_airpush_enabled), true)) {
             Log.d(AirPushHelper.class.getName(), "Airpush disabled");
             return;
         }

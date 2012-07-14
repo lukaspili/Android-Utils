@@ -1,0 +1,5 @@
+<resources>
+    <string name="preferences_ads_airpush_enabled">ads_airpush_enabled</string>
+    <string name="preferences_ads_airpush_enabled_title">Publicité airpush</string>
+    <string name="preferences_ads_airpush_enabled_summary">Pour donner quelques sous aux pauvres développeurs qui se font fouetter dans la cave!</string>
+</resources>
