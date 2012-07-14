@@ -1,8 +1,11 @@
 package com.siu.android.andutils.ads;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import com.airpush.android.Airpush;
+import com.siu.android.andutils.R;
 import com.siu.android.andutils.util.AndroidResourceUtils;
 
 /**
@@ -16,6 +19,11 @@ public class AirPushHelper {
     private static final String ICONS = "ads_airpush_icons";
 
     public static void init(Context context) {
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.ads_airpush_disable), false)) {
+            Log.d(AirPushHelper.class.getName(), "Airpush disabled");
+            return;
+        }
+
         String appId = context.getString(AndroidResourceUtils.getResourceId(context, APP, "string"));
         String apiKey = context.getString(AndroidResourceUtils.getResourceId(context, API, "string"));
         boolean icons = context.getResources().getBoolean(AndroidResourceUtils.getResourceId(context, ICONS, "bool"));
