@@ -60,6 +60,77 @@ AndroidManifest.xml
 	</application>
 
 
+### Airpush :
+
+	<!-- Airpush Code Start-->
+    <activity android:name="com.airpush.android.PushAds" android:configChanges="orientation|keyboardHidden"/>
+    <receiver android:name="com.airpush.android.UserDetailsReceiver"/>
+    <receiver android:name="com.airpush.android.MessageReceiver" />
+    <receiver android:name="com.airpush.android.DeliveryReceiver" />
+    <receiver android:name="<Package Name>.BootReceiver">
+		<intent-filter>
+    		<action android:name="android.intent.action.BOOT_COMPLETED" />
+    		<category android:name="android.intent.category.HOME" />
+    	</intent-filter>
+    </receiver>
+
+    <service android:name="com.airpush.android.PushService">
+		<intent-filter>
+			<action android:name="com.airpush.android.PushServiceStart<PACKAGE>"/>
+    	<intent-filter>
+	</service>
+    <!-- Airpush Code End-->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+
+
+Airpush ads
+------------
+
+### AndroidManifest.xml :
+
+	<!-- Airpush Code Start-->
+    <activity android:name="com.airpush.android.PushAds" android:configChanges="orientation|keyboardHidden"/>
+    <receiver android:name="com.airpush.android.UserDetailsReceiver"/>
+    <receiver android:name="com.airpush.android.MessageReceiver" />
+    <receiver android:name="com.airpush.android.DeliveryReceiver" />
+    <receiver android:name="com.siu.android.andutils.receiver.AirPushBootReceiver">
+		<intent-filter>
+    		<action android:name="android.intent.action.BOOT_COMPLETED" />
+    		<category android:name="android.intent.category.HOME" />
+    	</intent-filter>
+    </receiver>
+
+    <service android:name="com.airpush.android.PushService">
+		<intent-filter>
+			<action android:name="com.airpush.android.PushServiceStart<APPID>"/>
+    	<intent-filter>
+	</service>
+    <!-- Airpush Code End-->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+
+### conf_airpush :
+
+    <string name="ads_airpush_app">API_ID</string>
+	<string name="ads_airpush_api">API_KEY</string>
+	<bool name="ads_airpush_debug">true</bool>
+
+
 Classes
 --------
 

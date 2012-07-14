@@ -9,8 +9,6 @@
         <option name="RES_FOLDER_RELATIVE_PATH" value="/res" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/assets" />
         <option name="LIBS_FOLDER_RELATIVE_PATH" value="/libs" />
-        <option name="REGENERATE_R_JAVA" value="true" />
-        <option name="REGENERATE_JAVA_BY_AIDL" value="true" />
         <option name="USE_CUSTOM_APK_RESOURCE_FOLDER" value="false" />
         <option name="CUSTOM_APK_RESOURCE_FOLDER" value="" />
         <option name="USE_CUSTOM_COMPILER_MANIFEST" value="false" />
@@ -27,6 +25,7 @@
           <path>/res-overlay</path>
         </resOverlayFolders>
         <includeSystemProguardFile>true</includeSystemProguardFile>
+        <additionalNativeLibs />
       </configuration>
     </facet>
   </component>
@@ -114,7 +113,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/mobclix 4.0.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/greenDAO 1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -123,7 +122,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/greenDAO 1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/AirpushSDK.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
