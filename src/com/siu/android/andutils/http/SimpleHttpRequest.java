@@ -29,6 +29,9 @@ public class SimpleHttpRequest {
     private List<NameValuePair> params;
     private List<Header> headers;
 
+    private SimpleHttpRequest() {
+    }
+
     public HttpResponse request() {
         HttpClient client = new DefaultHttpClient();
 
