@@ -97,15 +97,6 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/httpclientandroidlib-1.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/analytics_google 1.4.2.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -122,6 +113,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="UrlImageViewHelper 17.05.2012" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/httpclientandroidlib-1.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

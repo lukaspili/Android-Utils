@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
+ * @deprecated use SimpleHttpRequest instead
  */
 public class HttpUtils {
 
