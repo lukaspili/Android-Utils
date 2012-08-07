@@ -8,6 +8,7 @@ Configuration
 --------------
 
 *	In the root of the main project : "git submodule add git@github.com:Siu-soon/Android-Utils.git libs/andutils"
+*	Update it : "git submodule update --init --recursive"
 *	Import actionbarsherlock module in intellij
 *	Import andutils module in intellij
 
