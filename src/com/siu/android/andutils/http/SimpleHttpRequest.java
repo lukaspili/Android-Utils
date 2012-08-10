@@ -4,10 +4,8 @@ import android.util.Log;
 import ch.boye.httpclientandroidlib.Header;
 import ch.boye.httpclientandroidlib.HttpResponse;
 import ch.boye.httpclientandroidlib.NameValuePair;
-import ch.boye.httpclientandroidlib.client.HttpClient;
 import ch.boye.httpclientandroidlib.client.entity.UrlEncodedFormEntity;
 import ch.boye.httpclientandroidlib.client.methods.*;
-import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
 import ch.boye.httpclientandroidlib.message.BasicHeader;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 import org.apache.commons.io.IOUtils;
@@ -33,8 +31,6 @@ public class SimpleHttpRequest {
     }
 
     public HttpResponse request() {
-        HttpClient client = new DefaultHttpClient();
-
         Log.d(getClass().getName(), "Connection " + method + " opened to : " + url);
         long time = System.currentTimeMillis();
 
@@ -76,7 +72,7 @@ public class SimpleHttpRequest {
                 }
             }
 
-            return client.execute(request);
+            return HttpManager.getInstance().execute(request);
 
         } catch (Exception e) {
             Log.e(getClass().getName(), "Error in " + method + " to " + url, e);
