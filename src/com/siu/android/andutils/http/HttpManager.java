@@ -51,6 +51,7 @@ public class HttpManager {
     public synchronized void closeActivesConnexions() {
         if (activeConnections) {
             getHttpClient().getConnectionManager().shutdown();
+            activeConnections = false;
         }
     }
 }
