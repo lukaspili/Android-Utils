@@ -9,6 +9,8 @@ import ch.boye.httpclientandroidlib.params.HttpConnectionParams;
 import ch.boye.httpclientandroidlib.params.HttpParams;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
@@ -18,7 +20,7 @@ public class HttpManager {
     private static HttpManager instance;
 
     private HttpClient httpClient;
-    private boolean activeConnections;
+    private Vector<HttpRequestBase> activesRequests = new Vector<HttpRequestBase>();
 
     private HttpManager() {
     }
@@ -44,14 +46,22 @@ public class HttpManager {
     }
 
     public HttpResponse execute(HttpRequestBase request) throws IOException {
-        activeConnections = true;
-        return getHttpClient().execute(request);
+        activesRequests.add(request);
+
+        HttpResponse response = null;
+        try {
+            response = getHttpClient().execute(request);
+        } finally {
+            activesRequests.remove(request);
+        }
+
+        return response;
     }
 
-    public synchronized void closeActivesConnexions() {
-        if (activeConnections) {
-            getHttpClient().getConnectionManager().shutdown();
-            activeConnections = false;
+    public synchronized void closeActivesRequests() {
+        for (Iterator<HttpRequestBase> it = activesRequests.iterator(); it.hasNext(); ) {
+            it.next().abort();
+            it.remove();
         }
     }
 }
