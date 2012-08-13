@@ -2,6 +2,7 @@ package com.siu.android.andutils.http;
 
 import android.util.Log;
 import ch.boye.httpclientandroidlib.Header;
+import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
 import ch.boye.httpclientandroidlib.NameValuePair;
 import ch.boye.httpclientandroidlib.client.entity.UrlEncodedFormEntity;
@@ -11,6 +12,7 @@ import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,6 +26,7 @@ public class SimpleHttpRequest {
     private String url;
     private String responseCharset;
     private Method method;
+    private HttpEntity entity;
     private List<NameValuePair> params;
     private List<Header> headers;
 
@@ -44,17 +47,13 @@ public class SimpleHttpRequest {
 
                 case POST:
                     HttpPost post = new HttpPost(url);
-                    if (null != params) {
-                        post.setEntity(new UrlEncodedFormEntity(params));
-                    }
+                    initEnclosingEntity(post);
                     request = post;
                     break;
 
                 case PUT:
                     HttpPut put = new HttpPut(url);
-                    if (null != params) {
-                        put.setEntity(new UrlEncodedFormEntity(params));
-                    }
+                    initEnclosingEntity(put);
                     request = put;
                     break;
 
@@ -108,6 +107,14 @@ public class SimpleHttpRequest {
         }
     }
 
+    private void initEnclosingEntity(HttpEntityEnclosingRequestBase request) throws UnsupportedEncodingException {
+        if (null != params) {
+            request.setEntity(new UrlEncodedFormEntity(params));
+        } else if (null != entity) {
+            request.setEntity(entity);
+        }
+    }
+
     public static class Builder {
         private SimpleHttpRequest instance;
 
@@ -131,6 +138,11 @@ public class SimpleHttpRequest {
             }
 
             instance.params.add(new BasicNameValuePair(name, value));
+            return this;
+        }
+
+        public Builder requestEntity(HttpEntity entity) {
+            instance.entity = entity;
             return this;
         }
 
