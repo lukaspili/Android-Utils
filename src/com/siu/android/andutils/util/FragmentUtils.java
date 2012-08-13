@@ -13,12 +13,12 @@ public final class FragmentUtils {
     public static void showDialog(FragmentManager fragmentManager, DialogFragment dialogFragment) {
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
-        Fragment prev = fragmentManager.findFragmentByTag("Dialog");
+        Fragment prev = fragmentManager.findFragmentByTag(dialogFragment.getClass().getSimpleName());
         if (prev != null) {
             ft.remove(prev);
         }
 
         ft.addToBackStack(null);
-        dialogFragment.show(ft, "Dialog");
+        dialogFragment.show(ft, dialogFragment.getClass().getSimpleName());
     }
 }
